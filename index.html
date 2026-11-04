@@ -102,7 +102,7 @@ function render(){const q=document.getElementById("search").value.toLowerCase().
 const list=products.filter(p=>(cat==="all"||p.tag.split(" ").includes(cat))&&(line==="Усі"||p.line===line)&&(p.name+' '+p.line).toLowerCase().includes(q));
 document.getElementById("grid").innerHTML=list.length?list.map(p=>{const out=p.stock<=0;
 return `<div class="card${out?" out":""}" style="background:linear-gradient(145deg,${p.color[0]},${p.color[1]})">
-<span class="badge${!out&&p.stock<=3?" low":""}">${out?"Немає в наявності":p.stock<=3?"Залишилось "+p.stock:"В наявності"}</span>
+<span class="badge${!out&&p.stock<=3?" low":""}">${out?"Немає в наявності":p.stock<=3?"Залишилось "+p.stock+" шт":"В наявності: "+p.stock+" шт"}</span>
 <div class="pic">${p.image?`<img src="${p.image}" alt="Chaser ${p.line} ${p.name}" onerror="this.outerHTML=bottleSVG(products.find(x=>x.id===${p.id}))">`:bottleSVG(p)}</div>
 <h3>${p.name}</h3><div class="meta">${p.line?`<span class="line-tag">${p.line}</span>`:""}${p.volume}</div>
 <div class="price">${p.price} ${config.currency}</div>
